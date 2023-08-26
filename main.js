@@ -112,45 +112,49 @@ function mostrarMultiploOu() {
 
     }
 }
+
+function ePrimo(numero){
+    if (numero <= 1) return false
+
+    if (numero <= 3) return true
+
+    if (numero % 2 === 0  || numero % 3 === 0) return false
+
+    for(let contador = 2; contador < numero; contador++){
+        if (numero % contador === 0) return false
+    }
+    return true
+}
+
 function mostrarProximoPrimo() {
+
 
     const numeros = document.getElementById('numeros').value.split(',')
     const container = document.getElementById('container-mostrar-proximo-primo')
-
     container.replaceChildren('')
     const ultimoIndice = numeros.length
 
     for (let contador = 0; contador < ultimoIndice; contador++) {
 
-        let primo
-        // let divide = 0;
-        // for (const nextprimo = Number(numeros[contador]) + 1; primo == false;nextprimo++) {
-        //     for (let termo = 1; termo <= nextprimo; termo++) {
-        //         if(nextprimo%termo == 0 ){
-        //             divide++
-        //         }
-        //     }
-        //     if(divide == 2){
-        //         primo = true
-        //     }
-        // }
-        let divisor = 2;
-        while(numeros[contador]%divisor != 0)
-            divisor++;
         
-        if(numeros[contador] == divisor)
-            primo = true
-        else
-            primo = false
-
-        if(primo = true){
-            const novoSpan = document.createElement('span')
-            novoSpan.textContent = numeros[contador]
-            container.appendChild(novoSpan)
-        }
-
+    for (var nextprimo = Number(numeros[contador]) + 1; ePrimo(nextprimo) == false; nextprimo++) {
     }
+
+    const novoSpan = document.createElement('span')
+    novoSpan.textContent = nextprimo
+    container.appendChild(novoSpan)
+    }
+
+    // let nextprimo = Number(numeros[contador]) + 1
+    // while(ePrimo(nextprimo) == false){
+    //     nextprimo++
+    // }
+    // const novoSpan = document.createElement('span')
+    // novoSpan.textContent = nextprimo
+    // container.appendChild(novoSpan)  
+    // }
 }
+
 
 botaoMostrarNumeros.addEventListener('click', mostrarNumeros)
 botaoMostrarNumerosPares.addEventListener('click', mostrarNumerosPares)
