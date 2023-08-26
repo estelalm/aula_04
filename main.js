@@ -18,7 +18,7 @@ function mostrarNumeros() {
     //criar os spans para o indice do número digitado
     for (let contador = 0; contador < ultimoIndice; contador++) {
 
-        if (numeros[contador] != '') {
+        if (numeros[contador] != '' && !isNaN(numeros[contador])) {
             const novoSpan = document.createElement('span')  //
             novoSpan.textContent = numeros[contador]
             container.appendChild(novoSpan) //anexar os span no container
@@ -36,7 +36,7 @@ function mostrarNumerosPares() {
     container.replaceChildren('')
     const ultimoIndice = numeros.length
     for (let contador = 0; contador < ultimoIndice; contador++) {
-        if (numeros[contador] % 2 == 0 && numeros[contador] != '') {
+        if (numeros[contador] % 2 == 0 && numeros[contador] != '' && !isNaN(numeros[contador])) {
             const novoSpan = document.createElement('span')
             novoSpan.textContent = numeros[contador]
             container.appendChild(novoSpan)
@@ -53,9 +53,11 @@ function mostrarTriplo() {
     container.replaceChildren('')
     const ultimoIndice = numeros.length
     for (let contador = 0; contador < ultimoIndice; contador++) {
-        const novoSpan = document.createElement('span')
-        novoSpan.textContent = (numeros[contador] * 3)
-        container.appendChild(novoSpan)
+        if (numeros[contador] != '' && !isNaN(numeros[contador])) {
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = (numeros[contador] * 3)
+            container.appendChild(novoSpan)
+        }
     }
 }
 
@@ -67,11 +69,11 @@ function mostrarProximoImpar() {
     container.replaceChildren('')
     const ultimoIndice = numeros.length
     for (let contador = 0; contador < ultimoIndice; contador++) {
-        if (numeros[contador] % 2 == 0 && numeros[contador] != '') {
+        if (numeros[contador] % 2 == 0 && numeros[contador] != '' &&!isNaN(numeros[contador])) {
             const novoSpan = document.createElement('span')
             novoSpan.textContent = (Number(numeros[contador]) + 1)
             container.appendChild(novoSpan)
-        } else {
+        } else  if (numeros[contador] != '' && !isNaN(numeros[contador])){
             const novoSpan = document.createElement('span')
             novoSpan.textContent = (Number(numeros[contador]) + 2)
             container.appendChild(novoSpan)
@@ -87,7 +89,7 @@ function mostrarMultiplo() {
     container.replaceChildren('')
     const ultimoIndice = numeros.length
     for (let contador = 0; contador < ultimoIndice; contador++) {
-        if (numeros[contador] % 5 == 0 && numeros[contador] % 3 == 0 && numeros[contador] != '') {
+        if (numeros[contador] % 5 == 0 && numeros[contador] % 3 == 0 && numeros[contador] != '' && !isNaN(numeros[contador])) {
             const novoSpan = document.createElement('span')
             novoSpan.textContent = numeros[contador]
             container.appendChild(novoSpan)
@@ -104,7 +106,7 @@ function mostrarMultiploOu() {
     container.replaceChildren('')
     const ultimoIndice = numeros.length
     for (let contador = 0; contador < ultimoIndice; contador++) {
-        if (numeros[contador] % 5 == 0 && numeros[contador] != '' || numeros[contador] % 3 == 0 && numeros[contador] != '') {
+        if (numeros[contador] % 5 == 0 && numeros[contador] != '' || numeros[contador] % 3 == 0 && numeros[contador] != '' && !isNaN(numeros[contador])) {
             const novoSpan = document.createElement('span')
             novoSpan.textContent = numeros[contador]
             container.appendChild(novoSpan)
@@ -113,14 +115,14 @@ function mostrarMultiploOu() {
     }
 }
 
-function ePrimo(numero){
+function ePrimo(numero) {
     if (numero <= 1) return false
 
     if (numero <= 3) return true
 
-    if (numero % 2 === 0  || numero % 3 === 0) return false
+    if (numero % 2 === 0 || numero % 3 === 0) return false
 
-    for(let contador = 2; contador < numero; contador++){
+    for (let contador = 2; contador < numero; contador++) {
         if (numero % contador === 0) return false
     }
     return true
@@ -136,13 +138,14 @@ function mostrarProximoPrimo() {
 
     for (let contador = 0; contador < ultimoIndice; contador++) {
 
-        
-    for (var nextprimo = Number(numeros[contador]) + 1; ePrimo(nextprimo) == false; nextprimo++) {
-    }
+        if (numeros[contador] != '' && !isNaN(numeros[contador])) {
+            for (var nextprimo = Number(numeros[contador]) + 1; ePrimo(nextprimo) == false; nextprimo++) {
+            }
 
-    const novoSpan = document.createElement('span')
-    novoSpan.textContent = nextprimo
-    container.appendChild(novoSpan)
+            const novoSpan = document.createElement('span')
+            novoSpan.textContent = nextprimo
+            container.appendChild(novoSpan)
+        }
     }
 
     // let nextprimo = Number(numeros[contador]) + 1
